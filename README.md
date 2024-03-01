@@ -7,7 +7,8 @@ Feel free to contact me if you need any further information: 912444862@qq.com
 
 
 If our code is helpful to you, please cite
-Feng, Yining, et al. "S2EFT: Spectral-Spatial-Elevation Fusion Transformer for hyperspectral image and LiDAR classification." Knowledge-Based Systems 283 (2024): 111190.
+
+Feng, Y., Zhu, J., Song, R., & Wang, X. (2024). S2EFT: Spectral-Spatial-Elevation Fusion Transformer for hyperspectral image and LiDAR classification. Knowledge-Based Systems, 283, 111190.
 
 
 
