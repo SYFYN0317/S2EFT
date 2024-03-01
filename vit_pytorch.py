@@ -129,20 +129,20 @@ class ViT(nn.Module):
             nn.Linear(dim, num_classes)
         )
     def forward(self, x, mask = None):
-        # b, n, c = x.shape
+        b, n, c = x.shape
         # # patchs[batch, patch_num, patch_size*patch_size*c]  [batch,200,145*145]
         # # x = rearrange(x, 'b c h w -> b c (h w)')
-        # avgout = torch.mean(x, dim=-1, keepdim=True)
-        # maxout, _ = torch.max(x, dim=-1, keepdim=True)
-        # out1 = torch.cat([avgout, maxout], dim=-1)
-        # out1 = rearrange(out1, 'b n c -> b c n')
-        # out1 = self.sigmoid(self.conv2d(out1))
-        # out1 = rearrange(out1, 'b c n -> b n c')
-        # z = torch.zeros(size=(b, n, c), dtype=torch.float32).cuda()
-        # beta = 0.4
-        # out11 = torch.where(out1.data >= beta, 1, z)
-        # ## embedding every patch vector to embedding size: [batch, patch_num, embedding_size]
-        # x= x * out11
+        avgout = torch.mean(x, dim=-1, keepdim=True)
+        maxout, _ = torch.max(x, dim=-1, keepdim=True)
+        out1 = torch.cat([avgout, maxout], dim=-1)
+        out1 = rearrange(out1, 'b n c -> b c n')
+        out1 = self.sigmoid(self.conv2d(out1))
+        out1 = rearrange(out1, 'b c n -> b n c')
+        z = torch.zeros(size=(b, n, c), dtype=torch.float32).cuda()
+        beta = 0.4
+        out11 = torch.where(out1.data >= beta, 1, z)
+        ## embedding every patch vector to embedding size: [batch, patch_num, embedding_size]
+        x= x * out11
         x = self.patch_to_embedding(x) #[b,n,dim]
         b, n, _ = x.shape
 
