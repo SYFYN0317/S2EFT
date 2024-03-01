@@ -308,6 +308,7 @@ if args.dataset == 'Trento':
     # input = np.concatenate((input_HS, input_DSM1), axis=2)
     band_MultiModal = [band1, band2]
     band = band1
+    
 elif args.dataset == 'Augsburg':
     folder_data = './Augsburg/'
     data_HS = loadmat(folder_data + 'HSI.mat')
